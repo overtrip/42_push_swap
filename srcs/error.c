@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 11:31:06 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 19:11:09 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/28 19:31:07 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int		ft_compstr(char *s1, char *s2)
 	int len1;
 	int len2;
 
-	if (*s1 == '-')
+	if (*s1 == '-' || *s1 == '+')
 		++s1;
-	if (*s2 == '-')
+	if (*s2 == '-' || *s2 == '+')
 		++s2;
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
