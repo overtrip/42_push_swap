@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 14:29:35 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/20 17:11:46 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/28 18:30:38 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	push_b(t_val **second, int *cmp, int option)
 	}
 	if (option & P_N)
 	{
-		ft_putstr("\n\toperations use: ");
+		ft_strcolor(GREEN, "\n\toperations use: ");
 		ft_putnbr(*cmp);
 		ft_putchar('\n');
 	}

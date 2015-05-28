@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 17:40:37 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/19 19:17:44 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/28 19:11:16 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_i		*ft_init_index(t_i *index)
 
 int		ft_get_opt(char **av, t_i ind)
 {
-	const int	tab[3] = {P_C, P_N, P_V};
-	const char	tabc[4] = {'c', 'n', 'v', '\0'};
+	const int	tab[5] = {P_C, P_N, P_V, P_E, P_T};
+	const char	tabc[6] = {'c', 'n', 'v', 'e', 't', '\0'};
 	int			ret;
 
 	ret = 0;
@@ -39,12 +39,9 @@ int		ft_get_opt(char **av, t_i ind)
 				break ;
 			}
 		}
-		if (ind.z == 3 || (tabc[ind.z] != av[ind.x][ind.y]
+		if (ind.z == 5 || (tabc[ind.z] != av[ind.x][ind.y]
 					&& ft_isdigit(av[ind.x][ind.y]) == 0))
-		{
-			ft_putstr("\n\tError: Option not recognized.\n");
-			return (-1);
-		}
+			ft_msg_error("\n\tError: Option not recognized.\n", ret);
 	}
 	return (ret);
 }
@@ -56,18 +53,15 @@ int		ft_get_option(char **av, int *start)
 
 	option = 0;
 	ft_init_index(&ind);
-	while (av[ind.x][0] == '-' && av[ind.x])
+	while (av[ind.x] && av[ind.x][0] == '-')
 	{
 		if (!av[ind.x++][1])
 			continue ;
 		--ind.x;
 		if (av[ind.x][1] == '-' && av[ind.x][2])
 			return (-1);
-		if (av[ind.x][1] == '-' && !av[ind.x][2])
-		{
-			++ind.x;
+		if (ft_strisdigit(av[ind.x]) == 1)
 			break ;
-		}
 		option |= ft_get_opt(av, ind);
 		++ind.x;
 	}
@@ -80,17 +74,18 @@ int		main(int ac, char **av)
 	int	option;
 	int	start;
 
+	option = 0;
 	start = 1;
 	if (ac > 1)
 	{
 		if ((option = ft_get_option(av, &start)) < 0)
 			return (-1);
-		if (ft_error(av, ac, start) == 1)
+		if (ft_error(av, ac, start, option) == 1)
 			return (-1);
 		ft_get_agrs(ac, &start, av, option);
 	}
 	else
-		ft_putstr("\n\tError: Content a void parameters.\n");
+		ft_msg_error("\n\tError: Content a void parameter.\n", option);
 	ft_putchar('\n');
 	return (0);
 }

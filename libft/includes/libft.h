@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/09 17:14:13 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/17 16:59:18 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/28 19:10:46 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define MAX(a, b)	((a) > (b) ? (a) : (b))
 # define RESET		"\e[0m"
 # define BLUE		"\e[0;34m"
 # define RED		"\e[0;31m"
@@ -61,6 +62,7 @@ void				ft_strdel(char **as);
 char				*ft_strdup(const char *s1);
 void				ft_strcolor(char *color, char *str);
 int					ft_strequ(char const *s1, char const *s2);
+int					ft_strisdigit(char *str);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strjoin(char const *s1, char const *s2);

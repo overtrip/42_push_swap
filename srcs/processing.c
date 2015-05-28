@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 17:13:50 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/20 17:27:26 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/28 19:18:05 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		ft_decresing(t_val *begin, t_i *var)
 {
-	int	nb_elems;
-	int	sorted;
-	t_val *prev;
+	int		nb_elems;
+	int		sorted;
+	t_val	*prev;
 
 	prev = NULL;
 	nb_elems = 0;
@@ -57,28 +57,70 @@ int		ft_find(t_val *begin, t_i *var)
 	return ((cmp > 0) ? 1 : 0);
 }
 
-void	ft_sort(int option, t_val *begin, t_val *end_list)
+void	ft_aff_stat(t_val *chain, t_val *second, int option)
 {
-	t_val	*second;
-	t_i		var;
-	int		find;
-	int		cmp;
-	int i;
-
-	second = NULL;
-	cmp = 0;
-	ft_init_index(&var);
-	while ( (i  = ft_decresing(begin, &var)) == 0)
+	(P_C & option) ? ft_strcolor(YELLOW, "\n\n\t Pile A: ") :
+		ft_putstr("\n\n\t Pile A: ");
+	while (chain)
 	{
-		find = ft_find(begin, &var);
-		if (var.x == 1)
-			end_list = push_a(&end_list, &second, &cmp, option);
-		else if (var.w == 1 && var.y == 3)
-			swap_a(&end_list, &cmp, option);
-		else if (find == 1 && var.x == 0)
-			end_list = rot_a(&begin, &end_list, &cmp, option);
-		else if (find == 0)
-			end_list = rrot_a(&begin, &end_list, &cmp, option);
+		ft_putnbr(chain->data);
+		ft_putchar(' ');
+		chain = chain->next;
 	}
-	push_b(&second, &cmp, option);
+	(P_C & option) ? ft_strcolor(YELLOW, "\n\t Pile B: ") :
+		ft_putstr("\n\t Pile B: ");
+	while (second)
+	{
+		ft_putnbr(second->data);
+		ft_putchar(' ');
+		second = second->next;
+	}
+	ft_putchar('\n');
+}
+
+void	ft_stat_pile(t_val ***chain, t_val ***second, int *cmp, int option)
+{
+	t_val	*current_a;
+
+	current_a = **chain;
+	while (current_a && current_a->next)
+		current_a = current_a->next;
+	while (*second && **second && (**second)->next)
+		(**second) = (**second)->next;
+	while (*second && **second && ++(*cmp))
+	{
+		(!(option & P_C)) ? ft_strcolor(RESET, "pa") :
+			ft_strcolor(YELLOW, "pa");
+		current_a->next = (**second);
+		current_a = current_a->next;
+		(**second) = (**second)->prev;
+		if (**second)
+		{
+			(**second)->next->prev = current_a;
+			(**second)->next = NULL;
+		}
+		if (option & P_V)
+			ft_aff_stat(**chain, **second, option);
+	}
+}
+
+void	ft_reelaff(t_val **chain, t_val **second, int *cmp, int option)
+{
+	ft_stat_pile(&chain, &second, cmp, option);
+	(P_C & option) ? ft_strcolor(BLUE, "\n\n\tFinally stack: ") :
+		ft_putstr("\n\n\tFinally stack: ");
+	while ((*chain))
+	{
+		ft_putnbr((*chain)->data);
+		ft_putchar(' ');
+		(*chain) = (*chain)->next;
+	}
+	ft_putchar('\n');
+	if (P_N & option)
+	{
+		(P_C & option) ? ft_strcolor(GREEN, "\n\tOperation use: ") :
+			ft_putstr("\n\tOperation use: ");
+		ft_putnbr(*cmp);
+		ft_putchar('\n');
+	}
 }

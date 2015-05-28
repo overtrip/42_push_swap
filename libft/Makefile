@@ -6,7 +6,7 @@
 #    By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/09 16:51:42 by jealonso          #+#    #+#              #
-#    Updated: 2015/05/06 16:53:32 by jealonso         ###   ########.fr        #
+#    Updated: 2015/05/28 15:53:00 by jealonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS = \
 	ft_strcolor.c \
 	ft_strcpy.c \
 	ft_strdel.c \
+	ft_strisdigit.c \
 	ft_striter.c \
 	ft_striteri.c \
 	ft_strjoin.c \
