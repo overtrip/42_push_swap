@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 11:46:50 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 18:57:08 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/29 12:27:49 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strisdigit(char *str)
 			if (*str >= '0' && *str <= '9')
 				++str;
 			else
-				return (0);
+				break ;
 		}
 		return (*str == '\0' ? 1 : 0);
 	}

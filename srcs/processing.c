@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 17:13:50 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 19:18:05 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/29 11:38:11 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	ft_stat_pile(t_val ***chain, t_val ***second, int *cmp, int option)
 		(**second) = (**second)->next;
 	while (*second && **second && ++(*cmp))
 	{
-		(!(option & P_C)) ? ft_strcolor(RESET, "pa") :
-			ft_strcolor(YELLOW, "pa");
+		(!(option & P_C)) ? ft_strcolor(RESET, "pa ") :
+			ft_strcolor(YELLOW, "pa ");
 		current_a->next = (**second);
 		current_a = current_a->next;
 		(**second) = (**second)->prev;

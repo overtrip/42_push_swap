@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 14:26:32 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 19:18:04 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/29 12:52:57 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ void	ft_sort(int option, t_val *begin, t_val *end_list)
 void	ft_get_agrs(int ac, int *start, char **av, int option)
 {
 	t_val	*begin;
+	int		i;
 
 	begin = NULL;
-	while (++(*start) < ac)
-		ft_add_list(&begin, ft_create_elem(av[*start]));
+	i = ac;
+	while (--i > *start)
+		ft_add_list(&begin, ft_create_elem(av[i]));
 	if (!(begin))
 	{
 		(option & P_E) ? ft_msg_error("\n\tError: no values set.\n", option) :

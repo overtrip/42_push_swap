@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 17:40:37 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 19:11:16 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/29 12:52:16 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,20 @@ int		ft_get_option(char **av, int *start)
 	}
 	*start = ind.x - 1;
 	return (option);
+}
+
+int		ft_error(char **av, int ac, int start, int option)
+{
+	int index;
+
+	index = start;
+	while (index++ < ac && av[index])
+	{
+		if (ft_strisdigit(av[index]) == 0)
+			ft_msg_error("\n\tError: Content no digit character.\n", option);
+		ft_mult(av, ac, start, option);
+	}
+	return (0);
 }
 
 int		main(int ac, char **av)

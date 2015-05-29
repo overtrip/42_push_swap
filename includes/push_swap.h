@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 17:53:16 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/28 19:18:32 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/05/29 12:50:52 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void				ft_reelaff(t_val **chain, t_val **sec, int *cmp, int opt);
 void				ft_aff_stat(t_val *chain, t_val *second, int option);
 int					ft_find(t_val *begin, t_i *var);
 int					ft_decresing(t_val *begin, t_i *var);
+void				ft_mult(char **av, int ac, int start, int option);
 
 #endif
