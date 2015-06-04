@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 17:13:50 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/29 11:38:11 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/06/03 19:16:31 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int		ft_decresing(t_val *begin, t_i *var)
 {
 	int		nb_elems;
-	int		sorted;
 	t_val	*prev;
 
 	prev = NULL;
 	nb_elems = 0;
-	sorted = 1;
+	var->sorted = 1;
 	var->z = begin ? begin->data : var->z;
 	while (begin && ++nb_elems)
 	{
@@ -28,17 +27,17 @@ int		ft_decresing(t_val *begin, t_i *var)
 		prev = begin;
 		begin = begin->next;
 		if (begin && prev->data < begin->data)
-			sorted = 0;
+			var->sorted = 0;
 	}
-	var->x = (var->z == prev->data) ? 1 : 0;
+	var->x = (prev && var->z == prev->data) ? 1 : 0;
 	var->y = nb_elems;
-	return (sorted);
+	return (var->sorted);
 }
 
 int		ft_find(t_val *begin, t_i *var)
 {
-	int	cmp;
-	int save;
+	int		cmp;
+	int		save;
 
 	cmp = (var->y % 2) == 0 ? (var->y / 2) : (var->y / 2 + 1);
 	while (begin && cmp--)
@@ -53,7 +52,7 @@ int		ft_find(t_val *begin, t_i *var)
 		begin = begin->next;
 	}
 	if (begin)
-		var->w = (save < begin->data ? 1 : 0);
+		var->w = (save < begin->data) ? 1 : 0;
 	return ((cmp > 0) ? 1 : 0);
 }
 

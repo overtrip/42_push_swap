@@ -6,7 +6,7 @@
 /*   By: jealonso <jealonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 17:40:37 by jealonso          #+#    #+#             */
-/*   Updated: 2015/05/29 12:52:16 by jealonso         ###   ########.fr       */
+/*   Updated: 2015/06/03 19:54:38 by jealonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_i		*ft_init_index(t_i *index)
 {
+	index->sorted = 1;
+	index->u = 3;
 	index->w = 0;
 	index->x = 1;
 	index->y = 0;
@@ -41,7 +43,8 @@ int		ft_get_opt(char **av, t_i ind)
 		}
 		if (ind.z == 5 || (tabc[ind.z] != av[ind.x][ind.y]
 					&& ft_isdigit(av[ind.x][ind.y]) == 0))
-			ft_msg_error("\n\tError: Option not recognized.\n", ret);
+			ft_msg_error("\n\tError: Option not recognized. Try: c,n,v,t,e\n",
+					ret);
 	}
 	return (ret);
 }
@@ -72,13 +75,20 @@ int		ft_get_option(char **av, int *start)
 int		ft_error(char **av, int ac, int start, int option)
 {
 	int index;
+	int	i;
 
 	index = start;
 	while (index++ < ac && av[index])
 	{
+		i = index;
 		if (ft_strisdigit(av[index]) == 0)
 			ft_msg_error("\n\tError: Content no digit character.\n", option);
-		ft_mult(av, ac, start, option);
+		while (av[++i])
+		{
+			ft_compstr(av[index], av[i], option);
+			ft_compstr2(av[index], av[i], option);
+		}
+		ft_size_val(av[index], option);
 	}
 	return (0);
 }
